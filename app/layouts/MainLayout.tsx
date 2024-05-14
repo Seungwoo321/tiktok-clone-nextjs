@@ -1,16 +1,17 @@
-import React from 'react'
-import { usePathname } from 'next/navigation'
-import TopNav from './includes/TopNav'
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname()
+import React from "react"
+import TopNav from "./includes/TopNav"
+const UploadLayout = ({ children }: { children: React.ReactNode }) => {
+
   return (
     <>
-      <TopNav/>
-      <div className={`flex justify-between mx-auto w-full lg:px-2.5 px-0 ${pathname === '/' ? 'max-w-[1140px]' : ''}`}>
+      <div className="bg-[#F8F8F8] h-[100vh]">
+        <TopNav/>
+        <div className="flex justify-between mx-auto w-full px-2 max-w-[1140px]">
           {children}
+        </div>
       </div>
     </>
   )
 }
 
-export default MainLayout
+export default UploadLayout
