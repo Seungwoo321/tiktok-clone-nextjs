@@ -2,7 +2,7 @@
 
 import React from "react"
 import MainLayout from "./layouts/MainLayout"
-import ClinetOnly from "./components/ClinetOnly"
+import ClientOnly from "./components/ClientOnly"
 import PostMain from "./components/PostMain"
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <MainLayout>
         <div className="mt-[80px] w-[calc(100%-90px)] max-w-[690px] ml-auto">
-          <ClinetOnly>
+          <ClientOnly>
             <PostMain post={{
               id: '123',
               user_id: '456',
@@ -23,7 +23,7 @@ export default function Home() {
                 image: 'https://placehold.co/100'
               }
             }}/>
-          </ClinetOnly>
+          </ClientOnly>
         </div>
       </MainLayout>
     </>

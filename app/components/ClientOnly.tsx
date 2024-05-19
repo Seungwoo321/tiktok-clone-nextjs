@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-const ClinetOnly = ({ children }: { children: React.ReactNode }) => {
+const ClientOnly = ({ children }: { children: React.ReactNode }) => {
   const [isClinet, setIsClient] = useState(false)
   useEffect(() => { setIsClient(true)}, [])
 
@@ -17,4 +17,4 @@ const ClinetOnly = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default ClinetOnly
+export default ClientOnly
