@@ -60,12 +60,35 @@ export interface UploadError {
 ///////////////////////////////////
 
 // COMPONENT TYPES
+
+export interface CommentsHeaderCompTypes {
+  params: {
+    userId: string;
+    postId: string;
+  };
+  post: PostWithProfile
+}
+
+export interface CommentsCompTypes {
+  params: {
+    userId: string;
+    postId: string;
+  };
+}
+
 export interface PostMainComType {
   post: PostWithProfile
 }
 
 export interface PostMainLikesComType {
   post: PostWithProfile
+}
+
+export interface PostPageTypes {
+  params: {
+    userId: string;
+    postId: string;
+  }
 }
 
 export interface PostUserComType {

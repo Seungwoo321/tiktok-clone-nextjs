@@ -1,9 +1,12 @@
-import { CropperDimensions, ShowErrorObject } from "@/app/types"
-import { useRouter } from "next/navigation"
 import React, { useState } from "react"
+import { CropperDimensions, ShowErrorObject } from "@/app/types"
+import { Cropper } from "react-advanced-cropper"
+import "react-advanced-cropper/dist/style.css"
+import { useRouter } from "next/navigation"
 import { AiOutlineClose } from "react-icons/ai"
 import { BsPencil } from "react-icons/bs"
 import TextInput from "../TextInput"
+import { BiLoaderCircle } from "react-icons/bi"
 
 const EditProfileOverlay = () => {
   const router = useRouter()
@@ -17,8 +20,16 @@ const EditProfileOverlay = () => {
   const [isUpdating, setIsUpdating] = useState(false)
   const [error, setError] = useState<ShowErrorObject | null>(null)
 
-  const getUploadedImage = () => {
-    console.log('getUploadedImage')
+  const getUploadedImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0]
+
+    if (selectedFile) {
+      setFile(selectedFile)
+      setUploadedImage(URL.createObjectURL(selectedFile))
+    } else {
+      setFile(null)
+      setUploadedImage(null)
+    }
   }
   
   const showError = (type: string) => {
@@ -26,6 +37,10 @@ const EditProfileOverlay = () => {
       return error.message
     }
     return ''
+  }
+
+  const cropAndUpdateImage = () => {
+    console.log('cropAndUpdateImage')
   }
 
   return (
@@ -135,14 +150,66 @@ const EditProfileOverlay = () => {
                           focus:outline-none
                         "
                       ></textarea>
-                      <p className="text-[11px] text-gray-500"></p>
+                      <p className="text-[11px] text-gray-500">
+                        {userBio ? userBio.length  : 0}/80
+                      </p>
                     </div>
                   </div>
 
                 </div>
               </div>
             ) : (
-              <div></div>
+              <div className="w-full max-h-[420px] mx-auto bg-black circle-stencil">
+                <Cropper
+                  stencilProps={{ aspectRatio: 1 }}
+                  className="h-[400px]"
+                  onChange={(cropper) => setCropper(cropper.getCoordinates())}
+                  src={uploadedImage}
+                />
+              </div>
+            )}
+          </div>
+
+          <div
+            id="ButtonSection"
+            className="absolute p-5 left-0 bottom-0 border-t border-t-gray-300 w-full"
+          >
+            {!uploadedImage ? (
+              <div id="UpdteInfoButton" className="flex items-center justify-end">
+                <button
+                  disabled={isUpdating}
+                  className="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100"
+                >
+                  <span className="px-2 font-medium text-[15px]">Cancel</span>
+                </button>
+
+                <button
+                  disabled={isUpdating}
+                  className="flex items-center bg-[#F02C56] text-white border rounded-md ml-3 px-3 py-[6px]"
+                >
+                  <span className="px-2 font-medium text-[15px]">
+                    {isUpdating ? <BiLoaderCircle color="#ffffff" className="my-1 mx-2.5 animate-spin" /> : "Save"}
+                  </span>
+                </button>
+              </div>
+            ) : (
+                <div id="CropperButtons" className="flex items-center justify-end">
+                  <button
+                    onClick={() => setUploadedImage(null)}
+                    className="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100"
+                  >
+                    <span className="px-2 font-medium text-[15px]">Cancel</span>
+                  </button>
+
+                  <button
+                    onClick={() => cropAndUpdateImage()}
+                    className="flex items-center bg-[#F02C56] text-white border rounded-md ml-3 px-3 py-[6px]"
+                  >
+                    <span className="px-2 font-medium text-[15px]">
+                      {isUpdating ? <BiLoaderCircle color="#ffffff" className="my-1 mx-2.5 animate-spin" /> : "Apply"}
+                    </span>
+                  </button>
+                </div>
             )}
           </div>
         </div>
