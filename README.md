@@ -5,7 +5,7 @@
 
 ## 진행중
 
-- [2:11:11 / 4:45:45](https://youtu.be/7zLyVzItZlQ?si=wL8vW8vVU-RsEIlV&t=7871)
+- [2:59:40 / 4:45:45](https://youtu.be/7zLyVzItZlQ?si=wL8vW8vVU-RsEIlV&t=10780)
 
 ## Node
 
@@ -24,3 +24,7 @@ Alternatively you can disable ESLint for the workspace folder tiktok-clone-nextj
 ### pixabay
 
 - 영상을 얻고 싶으면 여기서 찾을 수 있다 <https://pixabay.com/>
+
+### autoComplete
+
+- 현재 크롬 최신 버전 125.0.6422.142(64비트)에서 `autoComplete="off"`와 `autoComplete="chrome-off"`는 동작하지 않고 `autoComplete="new-password"`는 동작한다

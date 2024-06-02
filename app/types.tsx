@@ -1,3 +1,18 @@
+export interface UserContextTypes {
+  user: User | null;
+  register: (name: string, email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+  checkUser: () => Promise<void>;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  bio: string;
+  image: string;
+}
+
 export interface RandomUsers {
   id: string;
   name: string;
@@ -28,6 +43,19 @@ export interface Post {
   video_url: string;
   text: string;
   created_at: string;
+}
+
+export interface CommentWithProfile {
+  id: string;
+  user_id: string;
+  post_id: string;
+  text: string;
+  created_at: string;
+  profile: {
+    user_id: string;
+    name: string;
+    image: string;
+  }
 }
 
 export interface Comment {
@@ -76,6 +104,13 @@ export interface CommentsCompTypes {
   };
 }
 
+export interface SingleCommentCompTypes {
+  params: {
+    userId: string;
+    postId: string;
+  };
+  comment: CommentWithProfile
+}
 export interface PostMainComType {
   post: PostWithProfile
 }

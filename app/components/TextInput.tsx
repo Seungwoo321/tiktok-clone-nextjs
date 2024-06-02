@@ -21,7 +21,7 @@ const TextInput = ({ string, inputType, placeholder, error, onUpdate }: TextInpu
         value={string || ''}
         onChange={(event) => onUpdate(event.target.value)}
         type={inputType}
-        autoComplete="off"
+        autoComplete="new-password"
       />
 
       <div className="text-red-500 text-[14px] font-semibold">
