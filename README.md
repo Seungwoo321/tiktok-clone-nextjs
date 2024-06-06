@@ -5,7 +5,7 @@
 
 ## 진행중
 
-- [2:59:40 / 4:45:45](https://youtu.be/7zLyVzItZlQ?si=wL8vW8vVU-RsEIlV&t=10780)
+- [3:34:00 / 4:45:45](https://youtu.be/7zLyVzItZlQ?si=wL8vW8vVU-RsEIlV&t=12840)
 
 ## Node
 
