@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 
 import React, { useEffect } from "react"
 import { PostMainComType } from '../types';

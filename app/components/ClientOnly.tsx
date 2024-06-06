@@ -1,14 +1,14 @@
-'use clinet';
+"use client";
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const ClientOnly = ({ children }: { children: React.ReactNode }) => {
-  const [isClinet, setIsClient] = useState(false)
+  const [isclient, setIsClient] = useState(false)
   useEffect(() => { setIsClient(true)}, [])
 
   return (
     <>
-      {isClinet
+      {isclient
         ? <div>
             {children}
           </div>

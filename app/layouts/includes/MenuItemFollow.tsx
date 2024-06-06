@@ -1,4 +1,4 @@
-'use clinet';
+"use client";
 
 import { MenuItemFollowCompTypes } from "@/app/types";
 import Link from "next/link";

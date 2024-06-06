@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react"
 import { CropperDimensions, ShowErrorObject } from "@/app/types"
 import { Cropper } from "react-advanced-cropper"
