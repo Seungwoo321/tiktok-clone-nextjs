@@ -1,13 +1,14 @@
 import { database, Query } from "@/libs/AppWriteClient"
 import { ENV_STR } from "../env"
 
-const useGetRandomUsers = async () => {
+const useSearchProfilesByName = async (name: string) => {
   try {
     const profileResult = await database.listDocuments(
       ENV_STR.NEXT_PUBLIC_DATABASE_ID,
       ENV_STR.NEXT_PUBLIC_COLLECTION_ID_PROFILE,
       [
-        Query.limit(5)
+        Query.limit(5),
+        Query.search("name", name)
       ]
     )
     const documents = profileResult.documents
@@ -27,4 +28,4 @@ const useGetRandomUsers = async () => {
   }
 }
 
-export default useGetRandomUsers
+export default useSearchProfilesByName

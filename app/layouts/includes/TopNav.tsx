@@ -1,18 +1,30 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { BiSearch, BiUser } from "react-icons/bi"
 import { AiOutlinePlus } from 'react-icons/ai'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { FiLogOut } from "react-icons/fi"
+import { useUser } from "@/app/context/user"
+import { useGeneralStore } from "@/app/stores/general"
+import { RandomUsers } from "@/app/types"
 const TopNav = () => {
+  const contextUser = useUser()
   const router = useRouter()
   const pathname = usePathname()
+
+  const [searchProfiles, setSearchProfiles] = useState<RandomUsers[]>([])
+  let [showMenu, setShowMenu] = useState<boolean>(false)
+  let { setIsLoginOpen, setIsEditProfileOpen } = useGeneralStore()
+
+  useEffect(() => setIsEditProfileOpen(false), [])
+
   const handleSearchName = (event: { target : { value : string }}) => {
     console.log(event.target.value)
   }
   const goTo = () => {
-    console.log('here')
+    if (!contextUser?.user) return setIsLoginOpen(true)
+      router.push('/upload')
   }
   return (
     <>
@@ -63,9 +75,10 @@ const TopNav = () => {
               <span className="px-2 font-medium text-[15px]">Upload</span>
             </button>
 
-            {true ? (
+            {!contextUser?.user?.id ? (
               <div className="flex items-center">
                 <button
+                  onClick={() => setIsLoginOpen(true)}
                   className="flex items-center bg-[#F02C56] text-white border rounded-md px-3 py-[6px]"
                 >
                   <span className="whitepace-nowrap mx-4 font-medium text-[15px]">
@@ -78,33 +91,40 @@ const TopNav = () => {
               <div className="flex items-center">
                 <div className="relative">
                   <button
+                    onClick={() => setShowMenu(showMenu = !showMenu)}
                     className="mt-1 border border-gray-200 rounded-full"
                   >
                       <img className="rounded-full w-[35px] h-[35px]" src="https://placehold.co/35"/>
                   </button>
 
-                  <div className="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl border top-[40px] right-0">
-                    <button
-                      className="flex items-center w-full justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      <BiUser size="20"/>
-                      <span
-                        className="pl-2 font-semibold text-sm"
-                      >
-                        Profile
-                      </span>
-                    </button>
-                    <button
-                      className="flex items-center w-full justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      <FiLogOut size="20"/>
-                      <span
-                        className="pl-2 font-semibold text-sm"
-                      >
-                        Log out
-                      </span>
-                    </button>
-                  </div>
+                  {showMenu ? (
+                      <div className="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl border top-[40px] right-0">
+                        <button
+                          className="flex items-center w-full justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
+                        >
+                          <BiUser size="20" />
+                          <span
+                            className="pl-2 font-semibold text-sm"
+                          >
+                            Profile
+                          </span>
+                        </button>
+                        <button
+                          onClick={async () => {
+                            await contextUser?.logout()
+                            setShowMenu(false)
+                          }}
+                          className="flex items-center w-full justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
+                        >
+                          <FiLogOut size="20" />
+                          <span
+                            className="pl-2 font-semibold text-sm"
+                          >
+                            Log out
+                          </span>
+                        </button>
+                      </div>
+                  ) : null}
                 </div>
               </div>
             )}

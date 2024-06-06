@@ -1,10 +1,11 @@
 import { database, Query } from "@/libs/AppWriteClient"
+import { ENV_STR } from "../env"
 
 const useGetProfileByUserId = async (userId: string) => {
   try {
     const response = await database.listDocuments(
-      String(process.env.NEXT_PUBLIC_DATABASE_ID),
-      String(process.env.NEXT_PUBLIC_COLLECTION_ID_PROFILE),
+      ENV_STR.NEXT_PUBLIC_DATABASE_ID,
+      ENV_STR.NEXT_PUBLIC_COLLECTION_ID_PROFILE,
       [
         Query.equal('user_id', userId)
       ]
