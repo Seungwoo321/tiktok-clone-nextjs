@@ -6,7 +6,7 @@ const useGetAllPosts = async () => {
   try {
     const response = await database.listDocuments(
       ENV_STR.NEXT_PUBLIC_DATABASE_ID,
-      ENV_STR.NEXT_PUBLIC_COLLECTION_ID_POST
+      ENV_STR.NEXT_PUBLIC_COLLECTION_ID_POST,
       [
         Query.orderDesc("$id")
       ]

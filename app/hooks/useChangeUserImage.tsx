@@ -1,7 +1,7 @@
 import { storage } from "@/libs/AppWriteClient"
 import Image from "image-js"
 
-const userChangeUserImage = async (file: File, cropper: any, currentImage: string) => {
+const useChangeUserImage = async (file: File, cropper: any, currentImage: string) => {
   let videoId = Math.random().toString(36).slice(2, 22)
 
   const x = cropper.left
@@ -39,4 +39,4 @@ const userChangeUserImage = async (file: File, cropper: any, currentImage: strin
   }
 }
 
-export default userChangeUserImage
+export default useChangeUserImage

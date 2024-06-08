@@ -6,6 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Link from "next/link";
 import { SiSoundcharts } from "react-icons/si";
 import { BiErrorCircle } from "react-icons/bi";
+import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
 
 const PostUser = ({ post }: PostUserComType) => {
 
@@ -33,7 +34,7 @@ const PostUser = ({ post }: PostUserComType) => {
               muted
               loop
               className="aspect-[3/s4] object-cover rounded-md"
-              src={post.video_url}
+              src={useCreateBucketUrl(post.video_url)}
             />
           </Link>
         )}

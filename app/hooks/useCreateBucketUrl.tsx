@@ -1,6 +1,6 @@
 import { ENV_STR } from "../env"
 
-const useCreateBucketUrl = async (fileId: string) => {
+const useCreateBucketUrl = (fileId: string) => {
 
   const url = ENV_STR.NEXT_PUBLIC_APPWRITE_URL
   const id = ENV_STR.NEXT_PUBLIC_BUCKET_ID

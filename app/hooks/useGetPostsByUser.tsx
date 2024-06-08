@@ -1,7 +1,7 @@
 import { Query, database } from "@/libs/AppWriteClient"
 import { ENV_STR } from "../env"
 
-const useGetPostByUser = async (userId: string) => {
+const useGetPostsByUser = async (userId: string) => {
   try {
     const response = await database.listDocuments(
       ENV_STR.NEXT_PUBLIC_DATABASE_ID,
@@ -27,4 +27,4 @@ const useGetPostByUser = async (userId: string) => {
   }
 }
 
-export default useGetPostByUser
+export default useGetPostsByUser

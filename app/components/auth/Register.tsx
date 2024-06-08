@@ -4,9 +4,11 @@ import React, { useState } from 'react'
 import TextInput from '@/app/components/TextInput'
 import { BiLoaderCircle } from 'react-icons/bi'
 import { useUser } from '@/app/context/user'
+import { useGeneralStore } from '@/app/stores/general'
 
 const Register = () => {
-  
+  let { setIsLoginOpen } = useGeneralStore()
+
   const contextUser = useUser()
   const router = useRouter()
 
@@ -61,7 +63,7 @@ const Register = () => {
       setLoading(true)
       await contextUser.register(name, email, password)
       setLoading(false)
-      // setIsLoadingOpen(false)
+      setIsLoadingOpen(false)
       router.refresh()
     } catch (error) {
       console.log(error)

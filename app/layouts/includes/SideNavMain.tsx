@@ -1,12 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import MenuItem from "./MenuItem"
 import ClientOnly from "@/app/components/ClientOnly"
 import MenuItemFollow from "./MenuItemFollow"
+import { useGeneralStore } from "@/app/stores/general"
+import { useUser } from "@/app/context/user"
 
 const SideNavMain = () => {
+
+  let { setRandomUsers, randomUsers } = useGeneralStore()
+
+  const contextUser = useUser()
   const pathname = usePathname()
+
+  useEffect(() => {
+    setRandomUsers()
+  }, [])
+
   return (
     <>
       <div
@@ -40,14 +51,16 @@ const SideNavMain = () => {
             <div className="lg:hidden block pt-3"/>
             <ClientOnly>
               <div className="cursor-pointer">
-                <MenuItemFollow user={{ id: "1", name : "Test user", image: "https://placehold.co/50"}} />
+                {randomUsers.map((user, index) => (
+                  <MenuItemFollow key={index} user={user} />
+                ))}
               </div>
             </ClientOnly>
 
             <button className="lg:block hidden text-[#F02C56] pt-1.5 pl-2 text-[13px]">
               See all
             </button>
-            {true ? (
+            {contextUser?.user?.id ? (
               <div>
                 <div className="border-b lg:ml-2 mt-2" />
                 <h3 className="lg:block hidden text-xs text-gray-600 font-semibold pt-4 pb-2 px-2">Following accounts</h3>
@@ -55,7 +68,9 @@ const SideNavMain = () => {
                 <div className="lg:hidden block pt-3" />
                 <ClientOnly>
                   <div className="cursor-pointer">
-                    <MenuItemFollow user={{ id: "1", name: "Test user", image: "https://placehold.co/50" }} />
+                  {randomUsers.map((user, index) => (
+                    <MenuItemFollow key={index} user={user} />
+                  ))}
                   </div>
                 </ClientOnly>
 

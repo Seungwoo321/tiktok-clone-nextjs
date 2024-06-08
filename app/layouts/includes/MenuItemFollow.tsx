@@ -1,5 +1,6 @@
 "use client";
 
+import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
 import { MenuItemFollowCompTypes } from "@/app/types";
 import Link from "next/link";
 import { AiOutlineCheck } from "react-icons/ai";
@@ -15,7 +16,7 @@ const MenuItemFollow = ({ user }: MenuItemFollowCompTypes) => {
         <img
           className="rounded-full lg:mx-0 mx-auto"
           width="35"
-          src={user?.image}
+          src={useCreateBucketUrl(user?.image)}
         />
 
         <div className="lg:pl-2.5 lg:block hidden">
