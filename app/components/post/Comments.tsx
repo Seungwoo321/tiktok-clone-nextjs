@@ -10,8 +10,8 @@ import useCreateComment from "@/app/hooks/useCreateComment"
 
 const CommentsHeader = ({ params }: CommentsCompTypes) => {
 
-  let { commentsByPost, setCommentsByPost } = useCommentStore()
-  let { setIsLoginOpen } = useGeneralStore()
+  const { commentsByPost, setCommentsByPost } = useCommentStore()
+  const { setIsLoginOpen } = useGeneralStore()
 
   const contextUser = useUser()
   const [comment, setComment] = useState<string>('')

@@ -3,35 +3,46 @@
 import ClientOnly from "@/app/components/ClientOnly";
 import Comments from "@/app/components/post/Comments";
 import CommentsHeader from "@/app/components/post/CommentsHeader";
+import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl";
+import { useCommentStore } from "@/app/stores/comment";
+import { useLikeStore } from "@/app/stores/like";
+import { usePostStore } from "@/app/stores/post";
 import { PostPageTypes } from "@/app/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation"
+import { useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 const Post = ({ params }: PostPageTypes) => {
 
+  const { postById, postsByUser, setPostById, setPostsByUser } = usePostStore()
+  const { setLikesByPost } = useLikeStore()
+  const { setCommentsByPost } = useCommentStore()
+
   const router = useRouter()
 
-  const postById = {
-    id: '123',
-    user_id: '456',
-    video_url: '/167569-837244635_small.mp4',
-    text: 'this is some text',
-    created_at: 'date here',
-    profile: {
-      user_id: '456',
-      name: 'User 1',
-      image: 'https://placehold.co/100'
-    }
-  }
+  useEffect(() => {
+    setPostById(params.postId)
+    setCommentsByPost(params.postId)
+    setLikesByPost(params.postId)
+    setPostsByUser(params.userId)
+  }, [])
 
   const loopThroughPostsUp = () => {
-    console.log('loopThroughPostsUp')
+    postsByUser.forEach(post => {
+      if (post.id > params.postId) {
+        router.push(`/post/${post.id}/${params.userId}`)
+      }
+    })
   }
 
   const loopThroughPostsDown = () => {
-    console.log('loopThroughPostsDown')
+    postsByUser.forEach(post => {
+      if (post.id < params.postId) {
+        router.push(`/post/${post.id}/${params.userId}`)
+      }
+    })
   }
   return (
     <>
@@ -73,19 +84,19 @@ const Post = ({ params }: PostPageTypes) => {
             {postById?.video_url ? (
               <video
                 className="fixed object-cover w-full my-auto z-[0] h-screen"
-                src="/167569-837244635_small.mp4"
+                src={useCreateBucketUrl(postById?.video_url)}
               />
             ) : null}
 
             <div className="bg-black bg-opacity-70 lg:min-w-[480px] z-10 relative">
-              {true ? (
+              {postById?.video_url ? (
                 <video
                   autoPlay
                   controls
                   loop
                   muted
                   className="h-screen mx-auto"
-                  src="/167569-837244635_small.mp4"
+                  src={useCreateBucketUrl(postById?.video_url)}
                 />
               ) : null}
             </div>

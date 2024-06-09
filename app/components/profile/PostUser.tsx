@@ -14,6 +14,7 @@ const PostUser = ({ post }: PostUserComType) => {
     const video = document.getElementById(`video${post?.id}`) as HTMLVideoElement
 
     setTimeout(() => {
+      if (!video) return
       video.addEventListener('mouseenter', () => { video.play() })
       video.addEventListener('mouseleave', () => { video.pause() })
     }, 50)

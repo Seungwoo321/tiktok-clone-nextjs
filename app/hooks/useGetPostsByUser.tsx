@@ -5,7 +5,7 @@ const useGetPostsByUser = async (userId: string) => {
   try {
     const response = await database.listDocuments(
       ENV_STR.NEXT_PUBLIC_DATABASE_ID,
-      ENV_STR.NEXT_PUBLIC_COLLECTION_ID_LIKE,
+      ENV_STR.NEXT_PUBLIC_COLLECTION_ID_POST,
       [
         Query.equal("user_id", userId),
         Query.orderDesc("$id")

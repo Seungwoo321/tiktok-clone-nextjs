@@ -2,7 +2,7 @@ import { ID, database, storage } from "@/libs/AppWriteClient"
 import { ENV_STR } from "../env"
 
 const useCreatePost = async (file: File, userId: string, caption: string) => {
-  let videoId = Math.random().toString(36).slice(2, 22)
+  const videoId = Math.random().toString(36).slice(2, 22)
   try {
     await database.createDocument(
       ENV_STR.NEXT_PUBLIC_DATABASE_ID,

@@ -2,7 +2,7 @@ import { storage } from "@/libs/AppWriteClient"
 import Image from "image-js"
 
 const useChangeUserImage = async (file: File, cropper: any, currentImage: string) => {
-  let videoId = Math.random().toString(36).slice(2, 22)
+  const videoId = Math.random().toString(36).slice(2, 22)
 
   const x = cropper.left
   const y = cropper.top

@@ -17,8 +17,8 @@ const TopNav = () => {
   const pathname = usePathname()
 
   const [searchProfiles, setSearchProfiles] = useState<RandomUsers[]>([])
-  let [showMenu, setShowMenu] = useState<boolean>(false)
-  let { setIsLoginOpen, setIsEditProfileOpen } = useGeneralStore()
+  const [showMenu, setShowMenu] = useState<boolean>(false)
+  const { setIsLoginOpen, setIsEditProfileOpen } = useGeneralStore()
 
   useEffect(() => setIsEditProfileOpen(false), [])
 
@@ -89,7 +89,7 @@ const TopNav = () => {
           </div>
           <div className="flex items-center gap-3">
             <button
-              onClick={() => goTo}
+              onClick={() => goTo()}
               className="flex items-center border rounded-sm py-[6px] hover:bg-gray-100 pl-1.5"
             >
               <AiOutlinePlus color="#000000" size="22"></AiOutlinePlus>
@@ -112,7 +112,7 @@ const TopNav = () => {
               <div className="flex items-center">
                 <div className="relative">
                   <button
-                    onClick={() => setShowMenu(showMenu = !showMenu)}
+                    onClick={() => setShowMenu(!showMenu)}
                     className="mt-1 border border-gray-200 rounded-full"
                   >
                       <img

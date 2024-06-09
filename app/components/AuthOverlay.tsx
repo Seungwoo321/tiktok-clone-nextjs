@@ -7,9 +7,9 @@ import Login from "@/app/components/auth/Login"
 import { useGeneralStore } from "../stores/general"
 
 const AuthOverlay = () => {
-  let { setIsLoginOpen } = useGeneralStore()
+  const { setIsLoginOpen } = useGeneralStore()
 
-  let [isRegister, setIsRegister] = useState<boolean>(true)
+  const [isRegister, setIsRegister] = useState<boolean>(true)
   return (
     <>
       <div
@@ -34,7 +34,7 @@ const AuthOverlay = () => {
             </span>
 
             <button
-              onClick={() => setIsRegister(isRegister = !isRegister)}
+              onClick={() => setIsRegister(!isRegister)}
               className="text-[14px] text-[#F02C56] font-semibold pl-1"
             >
               <span>{!isRegister ? 'Register' : 'log in'}</span>

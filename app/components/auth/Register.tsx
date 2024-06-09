@@ -7,7 +7,7 @@ import { useUser } from '@/app/context/user'
 import { useGeneralStore } from '@/app/stores/general'
 
 const Register = () => {
-  let { setIsLoginOpen } = useGeneralStore()
+  const { setIsLoginOpen } = useGeneralStore()
 
   const contextUser = useUser()
   const router = useRouter()
@@ -55,7 +55,7 @@ const Register = () => {
   }
 
   const register = async () => {
-    let isError = validate()
+    const isError = validate()
     if (isError) return
     if (!contextUser) return
 
@@ -63,7 +63,7 @@ const Register = () => {
       setLoading(true)
       await contextUser.register(name, email, password)
       setLoading(false)
-      setIsLoadingOpen(false)
+      setIsLoginOpen(false)
       router.refresh()
     } catch (error) {
       console.log(error)

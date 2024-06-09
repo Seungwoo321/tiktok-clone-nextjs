@@ -6,7 +6,7 @@ import { useGeneralStore } from '../stores/general';
 import AuthOverlay from './AuthOverlay';
 import EditProfileOverlay from './profile/EditProfileOverlay';
 const AllOverlays = () => {
-  let { isLoginOpen, isEditProfileOpen } = useGeneralStore()
+  const { isLoginOpen, isEditProfileOpen } = useGeneralStore()
   return (
     <>
       <ClientOnly>

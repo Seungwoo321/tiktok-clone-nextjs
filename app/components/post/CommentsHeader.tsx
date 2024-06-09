@@ -18,12 +18,13 @@ import useCreateLike from "@/app/hooks/useCreateLike"
 import useDeleteLike from "@/app/hooks/useDeleteLike"
 import useDeletePostById from "@/app/hooks/useDeletePostById"
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl"
+import moment from "moment"
 
 const CommentsHeader = ({ post, params }: CommentsHeaderCompTypes) => {
 
-  let { setLikesByPost, likesByPost } = useLikeStore()
-  let { commentsByPost, setCommentsByPost } = useCommentStore()
-  let { setIsLoginOpen } = useGeneralStore()
+  const { setLikesByPost, likesByPost } = useLikeStore()
+  const { commentsByPost, setCommentsByPost } = useCommentStore()
+  const { setIsLoginOpen } = useGeneralStore()
 
   const contextUser = useUser()
   const router = useRouter()
@@ -44,7 +45,7 @@ const CommentsHeader = ({ post, params }: CommentsHeaderCompTypes) => {
       setUserLiked(false)
       return
     }
-    let res = useIsLiked(contextUser.user.id, params.postId, likesByPost)
+    const res = useIsLiked(contextUser.user.id, params.postId, likesByPost)
     setUserLiked(res ? true : false)
   }
 
@@ -77,7 +78,7 @@ const CommentsHeader = ({ post, params }: CommentsHeaderCompTypes) => {
   const likeOrUnlike = () => {
     if (!contextUser?.user) return setIsLoginOpen(true)
 
-      let res = useIsLiked(contextUser.user.id, params.postId, likesByPost)
+      const res = useIsLiked(contextUser.user.id, params.postId, likesByPost)
       if (!res) {
         like()
       } else {
@@ -90,7 +91,7 @@ const CommentsHeader = ({ post, params }: CommentsHeaderCompTypes) => {
   }
 
   const deletePost = async () => {
-    let res = confirm('Are you sure you want to delete this post?')
+    const res = confirm('Are you sure you want to delete this post?')
     if (!res) return
 
     setIsDeleteing(true)
@@ -132,7 +133,7 @@ const CommentsHeader = ({ post, params }: CommentsHeaderCompTypes) => {
             <div className="relative z-0 text-[13px] -mt-5 font-light">
               {post?.profile.name}
               <span className="relative -top-[2px] text-[30px] pl-1 pr-0.5">.</span>
-              <span className="font-medium">{post?.created_at}</span>
+              <span className="font-medium">{moment(post?.created_at).calendar()}</span>
             </div>
           </div>
         </div>
@@ -169,13 +170,13 @@ const CommentsHeader = ({ post, params }: CommentsHeaderCompTypes) => {
               className="rounded-full bg-gray-200 p-2 cursor-pointer"
             >
               {!hasClickedLike ? (
-                <AiFillHeart size="25"/>
+                <AiFillHeart color={likesByPost.length > 0 && userLiked ? '#ff2626' : ''} size="25"/>
               ) : (
                 <BiLoaderCircle className="animate-spin" size="25"/>
               )}
             </button>
             <span className="text-xs pl-2 pr-4 text-gray-800 font-semibold">
-              123
+              {likesByPost?.length}
             </span>
           </div>
         </ClientOnly>

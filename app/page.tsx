@@ -7,7 +7,7 @@ import PostMain from "./components/PostMain"
 import { usePostStore } from "./stores/post"
 
 export default function Home() {
-  let { allPosts, setAllPosts } = usePostStore()
+  const { allPosts, setAllPosts } = usePostStore()
 
   useEffect(() => {
     setAllPosts()

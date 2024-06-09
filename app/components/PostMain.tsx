@@ -15,7 +15,7 @@ const PostMain = ({ post }: PostMainComType) => {
     const postMainElement = document.getElementById(`PostMain-${post.id}`)
 
     if (postMainElement) {
-      let observer = new IntersectionObserver((entries) => {
+      const observer = new IntersectionObserver((entries) => {
         entries[0].isIntersecting ? video.play() : video.pause()
       }, { threshold: [0.6] })
 

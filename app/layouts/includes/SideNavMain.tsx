@@ -9,7 +9,7 @@ import { useUser } from "@/app/context/user"
 
 const SideNavMain = () => {
 
-  let { setRandomUsers, randomUsers } = useGeneralStore()
+  const { setRandomUsers, randomUsers } = useGeneralStore()
 
   const contextUser = useUser()
   const pathname = usePathname()

@@ -14,7 +14,7 @@ import useDeleteLike from "../hooks/useDeleteLike"
 
 const PostMainLikes = ({ post }: PostMainLikesComType) => {
   
-  let { setIsLoginOpen } = useGeneralStore()
+  const { setIsLoginOpen } = useGeneralStore()
 
   const router = useRouter()
   const contextUser = useUser()
@@ -33,12 +33,12 @@ const PostMainLikes = ({ post }: PostMainLikesComType) => {
   }, [likes, contextUser])
 
   const getAllLikesByPost = async () => {
-    let result = await useGetCommentsByPostId(post?.id)
+    const result = await useGetCommentsByPostId(post?.id)
     setComments(result)
   }
 
   const getAllCommentsByPost = async () => {
-    let result = await useGetLikesByPostId(post?.id)
+    const result = await useGetLikesByPostId(post?.id)
     setLikes(result) 
   }
 
@@ -49,7 +49,7 @@ const PostMainLikes = ({ post }: PostMainLikesComType) => {
       setUserLiked(false)
       return
     }
-    let res = useIsLiked(contextUser?.user?.id, post?.id, likes)
+    const res = useIsLiked(contextUser?.user?.id, post?.id, likes)
     setUserLiked(res ? true : false)
   }
 
@@ -80,7 +80,7 @@ const PostMainLikes = ({ post }: PostMainLikesComType) => {
   const likeOrUnlike = () => {
     if (!contextUser?.user) return setIsLoginOpen(true)
 
-    let res = useIsLiked(contextUser.user.id, post?.id, likes)
+    const res = useIsLiked(contextUser.user.id, post?.id, likes)
     if (!res) {
       like()
     } else {

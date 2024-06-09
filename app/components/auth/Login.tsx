@@ -6,7 +6,7 @@ import { useUser } from "@/app/context/user"
 import { useGeneralStore } from "@/app/stores/general"
 
 const Login = () => {
-  let { setIsLoginOpen } = useGeneralStore()
+  const { setIsLoginOpen } = useGeneralStore()
   const contextUser = useUser()
 
   const [loading, setLoading] = useState<boolean>(false)
@@ -39,7 +39,7 @@ const Login = () => {
     return isError
   }
   const login = async () => {
-    let isError = validate()
+    const isError = validate()
     if (isError) return
     if (!contextUser) return
 

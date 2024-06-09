@@ -19,8 +19,8 @@ import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl"
 
 const EditProfileOverlay = () => {
 
-  let { currentProfile, setCurrentProfile } = useProfileStore()
-  let { setIsEditProfileOpen } = useGeneralStore()
+  const { currentProfile, setCurrentProfile } = useProfileStore()
+  const { setIsEditProfileOpen } = useGeneralStore()
 
   const contextUser = useUser()
   const router = useRouter()
@@ -53,7 +53,7 @@ const EditProfileOverlay = () => {
   }
   
   const updateUserInfo = async () => {
-    let isError = validate()
+    const isError = validate()
     if (isError) return
     if (!contextUser?.user) return
 
@@ -88,7 +88,7 @@ const EditProfileOverlay = () => {
   }
 
   const cropAndUpdateImage = async () => {
-    let isError = validate()
+    const isError = validate()
     if (isError) return
     if (!contextUser?.user) return
       

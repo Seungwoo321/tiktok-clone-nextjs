@@ -14,11 +14,11 @@ const Upload = () => {
   const contextUser = useUser()
   const router = useRouter()
 
-  let [fileDisplay, setFileDisplay] = useState<string>("")
-  let [caption, setCaption] = useState<string>("")
-  let [file, setFile] = useState<File | null>(null)
-  let [error, setError] = useState<UploadError | null>(null)
-  let [isUploading, setIsUploading] = useState<boolean>(false)
+  const [fileDisplay, setFileDisplay] = useState<string>("")
+  const [caption, setCaption] = useState<string>("")
+  const [file, setFile] = useState<File | null>(null)
+  const [error, setError] = useState<UploadError | null>(null)
+  const [isUploading, setIsUploading] = useState<boolean>(false)
 
   useEffect(() => {
     if (!contextUser?.user) router.push('/')
@@ -67,7 +67,7 @@ const Upload = () => {
   }
 
   const createNewPost = async () => {
-    let isError = validate()
+    const isError = validate()
     if (isError) return
     if (!file || !contextUser?.user) return
     setIsUploading(true)
