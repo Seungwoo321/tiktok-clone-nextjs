@@ -7,7 +7,7 @@
 
 - [4:28:26 / 4:45:45](https://youtu.be/7zLyVzItZlQ?si=wL8vW8vVU-RsEIlV&t=16106)
 
-## Node
+## Note
 
 ### eslint
 
