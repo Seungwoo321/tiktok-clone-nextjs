@@ -33,13 +33,13 @@ const PostMainLikes = ({ post }: PostMainLikesComType) => {
   }, [likes, contextUser])
 
   const getAllLikesByPost = async () => {
-    const result = await useGetCommentsByPostId(post?.id)
-    setComments(result)
+    const result = await useGetLikesByPostId(post?.id)
+    setLikes(result)
   }
 
   const getAllCommentsByPost = async () => {
-    const result = await useGetLikesByPostId(post?.id)
-    setLikes(result) 
+    const result = await useGetCommentsByPostId(post?.id)
+    setComments(result) 
   }
 
   const hasUserLikedPost = () => {
